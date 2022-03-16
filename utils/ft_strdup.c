@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 15:29:26 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/16 17:42:38 by hbembnis         ###   ########.fr       */
+/*   Created: 2021/11/29 14:39:49 by hbembnis          #+#    #+#             */
+/*   Updated: 2021/11/29 15:37:08 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H 
+#include <stdlib.h>
 
-# include "utils/utils.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/wait.h>
+char	*ft_strdup(const char *src)
+{
+	int		i;
+	int		len;
+	char	*str;
 
-char	*get_path_env(char **envp);
-
-#endif
+	len = 0;
+	i = 0;
+	while (src[len])
+		len++;
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	while (src[i])
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

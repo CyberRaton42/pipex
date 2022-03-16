@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 15:29:26 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/16 17:42:38 by hbembnis         ###   ########.fr       */
+/*   Created: 2021/11/29 13:25:30 by hbembnis          #+#    #+#             */
+/*   Updated: 2021/11/29 14:38:05 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H 
+#include <stdlib.h>
 
-# include "utils/utils.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/wait.h>
+void	ft_bzero(void *s, size_t n);
 
-char	*get_path_env(char **envp);
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*membloc;
 
-#endif
+	membloc = malloc(count * size);
+	if (membloc == NULL)
+		return (NULL);
+	ft_bzero(membloc, count * size);
+	return (membloc);
+}

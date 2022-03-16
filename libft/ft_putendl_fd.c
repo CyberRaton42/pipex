@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 15:29:26 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/16 17:42:38 by hbembnis         ###   ########.fr       */
+/*   Created: 2021/12/03 14:06:15 by hbembnis          #+#    #+#             */
+/*   Updated: 2021/12/07 15:00:03 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H 
+#include <unistd.h>
 
-# include "utils/utils.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/wait.h>
+void	ft_putendl_fd(char *s, int fd)
+{
+	int	i;
 
-char	*get_path_env(char **envp);
-
-#endif
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i] != 0)
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	write(fd, "\n", 1);
+}

@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   cmdexec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 15:29:26 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/16 17:42:38 by hbembnis         ###   ########.fr       */
+/*   Created: 2022/03/16 17:11:30 by hbembnis          #+#    #+#             */
+/*   Updated: 2022/03/16 17:42:23 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H 
+#include "pipex.h"
 
-# include "utils/utils.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/wait.h>
+char	*get_path_env(char **envp)
+{
+	int		i;
+	char	*path;
 
-char	*get_path_env(char **envp);
-
-#endif
+	i = 0;
+	while (ft_strncmp("PATH", envp[i], 5) != 0)
+		i++;
+	path = ft_strdup(envp[i]);
+	printf("%s\n", path);
+	return (path);
+}

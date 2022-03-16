@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 15:29:26 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/16 17:42:38 by hbembnis         ###   ########.fr       */
+/*   Created: 2021/12/07 09:45:30 by hbembnis          #+#    #+#             */
+/*   Updated: 2021/12/07 10:04:57 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H 
+#include <stdlib.h>
+#include "libft.h"
 
-# include "utils/utils.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/wait.h>
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*tmp;
 
-char	*get_path_env(char **envp);
-
-#endif
+	tmp = (t_list *)malloc(sizeof(*tmp));
+	if (tmp == NULL)
+		return (NULL);
+	tmp->content = content;
+	tmp->next = NULL;
+	return (tmp);
+}

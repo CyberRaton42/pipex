@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 15:29:26 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/16 17:42:38 by hbembnis         ###   ########.fr       */
+/*   Created: 2021/11/26 17:17:50 by hbembnis          #+#    #+#             */
+/*   Updated: 2021/12/07 14:52:39 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H 
+#include <string.h>
 
-# include "utils/utils.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/wait.h>
+int	ft_strncmp(const char *a, const char *b, size_t len)
+{
+	size_t	i;
+	int		diff;
 
-char	*get_path_env(char **envp);
-
-#endif
+	i = 0;
+	diff = 0;
+	if (len == 0)
+		return (diff);
+	while (a[i] == b[i] && i < (len - 1) && a[i] != '\0' && b[i] != '\0')
+		i++;
+	diff = (unsigned char)a[i] - (unsigned char)b[i];
+	return (diff);
+}

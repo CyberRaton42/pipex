@@ -1,27 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 15:29:26 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/16 17:42:38 by hbembnis         ###   ########.fr       */
+/*   Created: 2021/11/25 15:54:24 by hbembnis          #+#    #+#             */
+/*   Updated: 2021/11/29 15:39:46 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H 
+#include <string.h>
 
-# include "utils/utils.h"
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/wait.h>
+int	ft_strlen(const char *str);
 
-char	*get_path_env(char **envp);
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+{
+	int				i;
+	unsigned int	j;
 
-#endif
+	i = 0;
+	j = ft_strlen(src);
+	if (size > 0)
+	{
+		while ((src[i] != '\0') && (size > 0))
+		{
+			dest[i] = src[i];
+			i++;
+			size--;
+		}
+		if (size == 0)
+			dest[i - 1] = '\0';
+		else
+			dest[i] = '\0';
+	}
+	return (j);
+}
