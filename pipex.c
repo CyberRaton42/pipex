@@ -6,12 +6,12 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/16 17:42:59 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/17 16:33:01 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-/*
+
 void	first_cmd(char **argv, char **envp, int *pipefd)
 {
 	int	infile_fd;
@@ -24,10 +24,10 @@ void	first_cmd(char **argv, char **envp, int *pipefd)
 	close(pipefd[0]);
 	
 }
-*/
+
 int	main(int argc, char **argv, char **envp)
 {
-	/*int	pipefd[2];
+	int	pipefd[2];
 	pid_t	pid1;
 
 	if (argc == 5)
@@ -40,6 +40,6 @@ int	main(int argc, char **argv, char **envp)
 		
 	}
 	else
-		arg_error();*/
+		arg_error();
 	get_path_env(envp);
 }

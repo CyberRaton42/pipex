@@ -6,15 +6,15 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:05:36 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/16 16:12:28 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/17 16:37:50 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_error(void)
+void	ft_error(char *s)
 {
-	perror("Error");
+	perror(s);
 	exit(EXIT_FAILURE);
 }
 
