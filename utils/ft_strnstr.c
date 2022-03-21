@@ -6,13 +6,13 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 18:01:40 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/17 14:13:13 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/18 16:00:48 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-int	ft_strnstr(const char	*big, const char *little, size_t len)
+int	ft_strnstr(const char	*big, const char *little, int len)
 {
 	int	i;
 	int	j;

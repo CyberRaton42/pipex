@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:11:30 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/18 14:19:38 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:03:16 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_path_env(char **envp)
 		i++;
 	path = ft_strdup(envp[i]);
 	if (!path)
-		ft_error("malloc");
+		ft_error();
 	i = 5;
 	while (path[i])
 	{
@@ -46,10 +46,10 @@ char	*get_exec_path(char *full_path, char *cmd)
 	i = 0;
 	path_tab = ft_split(full_path, ':');
 	if (!path_tab)
-		ft_error("malloc");
+		ft_error();
 	while (path_tab[i])
 	{
-		usable_cmd = ft_strjoin("/", usable_cmd);
+		usable_cmd = ft_strjoin("/", cmd);
 		path = ft_strjoin(path_tab[i], usable_cmd);
 		if (access(path, X_OK) == 0)
 		{
@@ -65,10 +65,9 @@ char	*get_exec_path(char *full_path, char *cmd)
 	return (NULL);
 }
 
-void exec_cmd(char *argv, char **envp)
+int exec_cmd(char *argv, char **envp)
 {
 	char	**cmd;
-	int		i;
 	char	*path;
 
 	cmd = ft_split(argv, ' ');
@@ -76,8 +75,9 @@ void exec_cmd(char *argv, char **envp)
 	if (!path)
 	{
 		free_tab(cmd);
-		ft_error("Bad path");
+		return (0);
 	}
 	if (execve(path, cmd, envp) == -1)
-		ft_error("execve");
+		ft_error();
+	return (1);
 }

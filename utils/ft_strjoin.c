@@ -6,13 +6,12 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 12:55:19 by hbembnis          #+#    #+#             */
-/*   Updated: 2021/12/07 14:56:48 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/18 16:00:24 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
-
+#include "utils.h"
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;

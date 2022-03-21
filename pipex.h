@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:29:26 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/18 14:21:42 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:04:53 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@
 # include <sys/wait.h>
 
 char	*get_path_env(char **envp);
-void exec_cmd(char *argv, char **envp)
-void    free_tab(char **tab)
+int     exec_cmd(char *argv, char **envp);
+void    free_tab(char **tab);
+void	ft_error(void);
+void	arg_error(void);
 
 #endif

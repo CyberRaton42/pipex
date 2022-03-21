@@ -6,13 +6,13 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/18 14:20:47 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/20 21:02:16 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	first_cmd(char **argv, char **envp, int *pipefd)
+int	first_cmd(char **argv, char **envp, int *pipefd)
 {
 	int	infile_fd;
 
@@ -22,20 +22,24 @@ void	first_cmd(char **argv, char **envp, int *pipefd)
 	dup2(pipefd[1], STDOUT_FILENO);
 	dup2(infile_fd, STDIN_FILENO);
 	close(pipefd[0]);
-	exec_cmd(argv[2], envp);
+	if (exec_cmd(argv[2], envp) == 0)
+		return (0);
+	return (1);
 }
 
-void	second_cmd(char **argv, char **envp, int *pipefd)
+int	second_cmd(char **argv, char **envp, int *pipefd)
 {
 	int	outfile_fd;
 
-	outfile_fd = open(argv[4], O_RDONLY);
+	outfile_fd = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (outfile_fd == -1)
 		ft_error();
 	dup2(pipefd[0], STDIN_FILENO);
 	dup2(outfile_fd, STDOUT_FILENO);
 	close(pipefd[1]);
-	exec_cmd(argv[3], envp);
+	if (exec_cmd(argv[3], envp) == 0)
+		return (0);
+	return (1);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -51,11 +55,15 @@ int	main(int argc, char **argv, char **envp)
 		if (pid1 == -1)
 			ft_error();
 		if (pid1 == 0)
-			first_cmd(argv, envp, pipefd)
+		{
+			if (first_cmd(argv, envp, pipefd) == 0)
+				return (127);
+		}
 		waitpid(pid1, NULL, 0);
-		second_cmd(argv, envp, pipefd);
+		if (second_cmd(argv, envp, pipefd) == 0)
+			return (127);
 	}
 	else
 		arg_error();
-	return (0);
+	return (1);
 }

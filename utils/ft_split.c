@@ -6,12 +6,11 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 11:18:38 by hbembnis          #+#    #+#             */
-/*   Updated: 2021/12/12 11:30:26 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/18 15:59:02 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
 
 static int	ft_count(const char *s, char c)
 {
