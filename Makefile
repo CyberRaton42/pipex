@@ -1,7 +1,7 @@
-SRCS = pipex.c \
-		mem.c \
-		errors.c \
-		cmdexec.c \
+SRCS = srcs/pipex.c \
+		srcs/mem.c \
+		srcs/errors.c \
+		srcs/cmdexec.c \
 		utils/ft_putstr_fd.c \
 		utils/ft_split.c \
 		utils/ft_strdup.c \
