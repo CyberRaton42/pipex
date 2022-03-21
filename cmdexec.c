@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:11:30 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/21 15:11:27 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:34:36 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,18 @@ int	exec_cmd(char *argv, char **envp)
 	while (cmd[i])
 	{
 		argcmd = ft_strjoin(argcmd, cmd[i]);
-		argcmd = ft_strjoin(argcmd, " ");
+		if (cmd[i + 1])
+			argcmd = ft_strjoin(argcmd, " ");
 		i++;
 	}
+	printf("%s\n", argcmd);
+	i = 2;
+	while (cmd[i])
+	{
+		free(cmd[i]);
+		i++;
+	}
+	cmd[1] = argcmd;
 	path = get_exec_path(get_path_env(envp), cmd[0]);
 	if (!path)
 	{
