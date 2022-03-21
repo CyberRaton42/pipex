@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/20 21:02:16 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:06:29 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	second_cmd(char **argv, char **envp, int *pipefd)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int	pipefd[2];
+	int		pipefd[2];
 	pid_t	pid1;
 
 	if (argc == 5)
