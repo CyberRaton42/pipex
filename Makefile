@@ -9,9 +9,23 @@ SRCS = srcs/pipex.c \
 		utils/ft_strlen.c \
 		utils/ft_strnstr.c \
 
+SRCSBONUS = bonus/pipex_bonus.c \
+				bonus/mem_bonus.c \
+				bonus/errors_bonus.c \
+				bonus/cmdexec_bonus.c \
+				bonus/here_doc_bonus.c \
+				utils/ft_putstr_fd.c \
+				utils/ft_split.c \
+				utils/ft_strdup.c \
+				utils/ft_strjoin.c \
+				utils/ft_strlen.c \
+				utils/ft_strnstr.c \
+
 CFLAGS = -Wall -Wextra -Werror
 
 OBJ = ${SRCS:.c=.o}
+
+OBJBONUS = ${SRCSBONUS:.c=.o}
 
 NAME = pipex
 
@@ -41,12 +55,17 @@ ${NAME}: rm_log ${OBJ}
 	@echo "\033[1;92m\033[6;0fpipex pret!\033[0m\033[?25h"
 	@cat error.log 2>/dev/null
 
+bonus: rm_log ${OBJBONUS}
+	@${CC} ${OBJBONUS} ${CFLAGS} -o ${NAME} 2>>error.log
+	@echo "\033[1;92m\033[6;0fpipex pret!\033[0m\033[?25h"
+	@cat error.log 2>/dev/null
+
 clean:
-	@rm -f ${OBJ}
+	@rm -f ${OBJ} ${OBJBONUS}
 	@echo "clean ok!"
 
 fclean:
-	@rm -f ${OBJ} ${NAME}
+	@rm -f ${OBJ} ${OBJBONUS} ${NAME}
 	@echo "fclean ok!"
 
 re: fclean all
