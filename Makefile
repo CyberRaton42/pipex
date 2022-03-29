@@ -29,6 +29,8 @@ OBJBONUS = ${SRCSBONUS:.c=.o}
 
 NAME = pipex
 
+BONUSNAME = pipex_bonus
+
 CC = gcc
 
 all: ${NAME}
@@ -56,7 +58,7 @@ ${NAME}: rm_log ${OBJ}
 	@cat error.log 2>/dev/null
 
 bonus: rm_log ${OBJBONUS}
-	@${CC} ${OBJBONUS} ${CFLAGS} -o ${NAME} 2>>error.log
+	@${CC} ${OBJBONUS} ${CFLAGS} -o ${BONUSNAME} 2>>error.log
 	@echo "\033[1;92m\033[6;0fpipex pret!\033[0m\033[?25h"
 	@cat error.log 2>/dev/null
 
@@ -65,7 +67,7 @@ clean:
 	@echo "clean ok!"
 
 fclean:
-	@rm -f ${OBJ} ${OBJBONUS} ${NAME}
+	@rm -f ${OBJ} ${OBJBONUS} ${NAME} ${BONUSNAME}
 	@echo "fclean ok!"
 
 re: fclean all

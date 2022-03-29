@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/24 16:18:02 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:35:20 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	second_cmd(char **argv, char **envp, int *pipefd)
 		ft_error();
 	dup2(pipefd[0], STDIN_FILENO);
 	dup2(outfile_fd, STDOUT_FILENO);
-	close(pipefd[0]);
+	close(pipefd[1]);
 	if (exec_cmd(argv[3], envp) == 0)
 		return (0);
+	close(outfile_fd);
 	return (1);
 }
 
@@ -37,7 +38,6 @@ int	first_cmd(char **argv, char **envp, int *pipefd)
 		ft_error();
 	if (pid2 == 0)
 	{
-		ft_putstr_fd("child2", 2);
 		if (second_cmd(argv, envp, pipefd) == 0)
 			return (0);
 	}
@@ -48,7 +48,7 @@ int	first_cmd(char **argv, char **envp, int *pipefd)
 			ft_error();
 		dup2(pipefd[1], STDOUT_FILENO);
 		dup2(infile_fd, STDIN_FILENO);
-		//close(pipefd[1]);
+		close(pipefd[0]);
 		if (exec_cmd(argv[2], envp) == 0)
 			return (0);
 	}
@@ -65,7 +65,6 @@ int	main(int argc, char **argv, char **envp)
 {
 	int		pipefd[2];
 	pid_t	pid1;
-	//pid_t	pid2;
 
 	if (argc == 5)
 	{
@@ -76,22 +75,11 @@ int	main(int argc, char **argv, char **envp)
 			ft_error();
 		if (pid1 == 0)
 		{
-			ft_putstr_fd("child1", 2);
 			if (first_cmd(argv, envp, pipefd) == 0)
 				return (127);
 		}
-		/*read(pipefd[0], "", 0);
-		pid2 = fork();
-		if (pid2 == -1)
-			ft_error();
-		if (pid2 == 0)
-		{
-			//ft_putstr_fd("child2", 2);
-			if (second_cmd(argv, envp, pipefd) == 0)
-				return (127);
-		}*/
+		ft_close(pipefd);
 		waitpid(pid1, NULL, 0);
-		//ft_close(pipefd);
 	}
 	else
 		arg_error();
