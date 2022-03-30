@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/29 14:46:54 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:44:36 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ int	multi_cmd(char *argv, char **envp)
 		waitpid(pid1, NULL, 0);
 	}
 	return (0);
+}
+
+void	ft_close(int *pipefd)
+{
+	close(pipefd[0]);
+	close(pipefd[1]);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -75,7 +81,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc >= 5)
 	{
 		if (ft_strnstr(argv[1], "here_doc", 8) == 1)
-			ft_here_doc(argv, argc);
+			ft_here_doc(argv);
 		
 	}
 	else
