@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:05:36 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/04/05 13:24:03 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:39:30 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	ft_error(void)
 {
 	perror(NULL);
 	exit(EXIT_FAILURE);
+}
+
+void	cmd_not_found(void)
+{
+	ft_putstr_fd("Command not found\n", 2);
 }
 
 void	arg_error(void)

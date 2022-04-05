@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/04/05 14:40:52 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:59:41 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,16 @@ void	first_child( char *argv, char **envp, int infile_fd)
 void	no_heredoc(char **argv, char **envp, int outfile_fd)
 {
 	int	infile_fd;
-	//int	outfile_fd;
 
 	infile_fd = open(argv[1], O_RDONLY);
-	//outfile_fd = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	dup2(infile_fd, 0);
 	dup2(outfile_fd, 1);
 	first_child(argv[2], envp, infile_fd);
-	/*while (i < argc - 2)
-		first_child(argv[i++], envp, 1);
-	exec_cmd(argv[i], envp);*/
 }
 
 int	main(int argc, char **argv, char **envp)
 {
-	//int	infile_fd;
-	int	outfile_fd;
+	int	out_fd;
 	int	i;
 
 	i = 3;
@@ -90,12 +84,14 @@ int	main(int argc, char **argv, char **envp)
 	{
 		if (ft_strnstr(argv[1], "here_doc", 8) == 1)
 		{
-			outfile_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+			if (argc < 6)
+				arg_error();
+			out_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 			ft_here_doc(argv, argc);
 		}
 		else
-			outfile_fd = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		no_heredoc(argv, envp, outfile_fd);
+			out_fd = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		no_heredoc(argv, envp, out_fd);
 		while (i < argc - 2)
 			first_child(argv[i++], envp, 1);
 		exec_cmd(argv[i], envp);

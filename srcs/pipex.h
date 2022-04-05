@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:29:26 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/29 15:36:25 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:25:32 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		exec_cmd(char *argv, char **envp);
 void	free_tab(char **tab);
 void	ft_error(void);
 void	arg_error(void);
+void	cmd_not_found(void);
 
 #endif

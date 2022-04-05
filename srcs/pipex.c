@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/29 14:35:20 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:32:41 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	second_cmd(char **argv, char **envp, int *pipefd)
 	dup2(pipefd[0], STDIN_FILENO);
 	dup2(outfile_fd, STDOUT_FILENO);
 	close(pipefd[1]);
-	if (exec_cmd(argv[3], envp) == 0)
-		return (0);
+	if (exec_cmd(argv[3], envp) == 127)
+		return (127);
 	close(outfile_fd);
 	return (1);
 }
@@ -38,8 +38,8 @@ int	first_cmd(char **argv, char **envp, int *pipefd)
 		ft_error();
 	if (pid2 == 0)
 	{
-		if (second_cmd(argv, envp, pipefd) == 0)
-			return (0);
+		if (second_cmd(argv, envp, pipefd) == 127)
+			return (127);
 	}
 	else
 	{
@@ -49,8 +49,8 @@ int	first_cmd(char **argv, char **envp, int *pipefd)
 		dup2(pipefd[1], STDOUT_FILENO);
 		dup2(infile_fd, STDIN_FILENO);
 		close(pipefd[0]);
-		if (exec_cmd(argv[2], envp) == 0)
-			return (0);
+		if (exec_cmd(argv[2], envp) == 127)
+			return (127);
 	}
 	return (1);
 }
@@ -75,7 +75,7 @@ int	main(int argc, char **argv, char **envp)
 			ft_error();
 		if (pid1 == 0)
 		{
-			if (first_cmd(argv, envp, pipefd) == 0)
+			if (first_cmd(argv, envp, pipefd) == 127)
 				return (127);
 		}
 		ft_close(pipefd);

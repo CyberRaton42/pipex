@@ -45,8 +45,6 @@ void	ft_here_doc(char **argv, int argc)
 	int		pipefd[2];
 	char	*cmd_line;
 
-	if (argc < 6)
-		arg_error();
 	if (pipe(pipefd) == -1)
 		ft_error();
 	pid_here = fork();

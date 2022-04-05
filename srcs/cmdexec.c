@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:11:30 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/29 14:13:44 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:49:45 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*get_exec_path(char *full_path, char *cmd)
 		free(usable_cmd);
 		i++;
 	}
-	free(path_tab);
+	free_tab(path_tab);
 	return (NULL);
 }
 
@@ -72,10 +72,13 @@ int	exec_cmd(char *argv, char **envp)
 
 	cmd = ft_split(argv, ' ');
 	path = get_exec_path(get_path_env(envp), cmd[0]);
+	if (access(cmd[0], X_OK) == 0)
+		path = cmd[0];
 	if (!path)
 	{
 		free_tab(cmd);
-		return (0);
+		cmd_not_found();
+		return (127);
 	}
 	if (execve(path, cmd, envp) == -1)
 		ft_error();
