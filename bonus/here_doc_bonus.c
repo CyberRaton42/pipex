@@ -39,12 +39,14 @@ int	get_cmd_line(char **cmd_line)
 	return (r);
 }
 
-void	ft_here_doc(char **argv)
+void	ft_here_doc(char **argv, int argc)
 {
 	pid_t	pid_here;
 	int		pipefd[2];
 	char	*cmd_line;
 
+	if (argc < 6)
+		arg_error();
 	if (pipe(pipefd) == -1)
 		ft_error();
 	pid_here = fork();

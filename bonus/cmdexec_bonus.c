@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:11:30 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/03/21 17:18:17 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/04/05 13:24:42 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,33 +63,6 @@ char	*get_exec_path(char *full_path, char *cmd)
 	}
 	free(path_tab);
 	return (NULL);
-}
-
-char	*ft_joinandfree(char *s1, char *s2)
-{
-	char	*joined;
-	int		i;
-	int		j;
-
-	joined = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!joined)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i])
-	{
-		joined[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		joined[i] = s2[j];
-		i++;
-		j++;
-	}
-	joined[i] = '\0';
-	free(s1);
-	return (joined);
 }
 
 int	exec_cmd(char *argv, char **envp)
