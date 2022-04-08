@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/04/05 15:32:41 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/04/07 14:59:38 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	second_cmd(char **argv, char **envp, int *pipefd)
 	dup2(pipefd[0], STDIN_FILENO);
 	dup2(outfile_fd, STDOUT_FILENO);
 	close(pipefd[1]);
+	//write(2, "second cmd\n", 11);
 	if (exec_cmd(argv[3], envp) == 127)
 		return (127);
 	close(outfile_fd);
@@ -76,8 +77,14 @@ int	main(int argc, char **argv, char **envp)
 		if (pid1 == 0)
 		{
 			if (first_cmd(argv, envp, pipefd) == 127)
-				return (127);
+			{
+				exit(EXIT_FAILURE);
+				return (cmd_error());
+				//write(2, "test\n", 5);
+				//return (127);
+			}
 		}
+		//write(2, "test2\n", 6);
 		ft_close(pipefd);
 		waitpid(pid1, NULL, 0);
 	}

@@ -68,6 +68,7 @@ clean:
 
 fclean:
 	@rm -f ${OBJ} ${OBJBONUS} ${NAME} ${BONUSNAME}
+	@clear
 	@echo "fclean ok!"
 
 re: fclean all
