@@ -39,7 +39,7 @@ int	get_cmd_line(char **cmd_line)
 	return (r);
 }
 
-void	ft_here_doc(char **argv, int argc)
+void	ft_here_doc(char **argv)
 {
 	pid_t	pid_here;
 	int		pipefd[2];
