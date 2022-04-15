@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/04/08 12:33:35 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:49:19 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ int	main(int argc, char **argv, char **envp)
 			ft_here_doc(argv);
 		}
 		else
+		{
 			out_fd = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		no_heredoc(argv, envp, out_fd);
+			no_heredoc(argv, envp, out_fd);
+		}
 		while (i < argc - 2)
 			first_child(argv[i++], envp, 1);
 		exec_cmd(argv[i], envp);

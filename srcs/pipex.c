@@ -6,7 +6,7 @@
 /*   By: hbembnis <hbembnis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 15:27:25 by hbembnis          #+#    #+#             */
-/*   Updated: 2022/04/08 15:01:42 by hbembnis         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:46:12 by hbembnis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	second_cmd(char **argv, char **envp, int *pipefd)
 	dup2(pipefd[0], STDIN_FILENO);
 	dup2(outfile_fd, STDOUT_FILENO);
 	close(pipefd[1]);
-	if (exec_cmd(argv[3], envp) == 127)
-		exit(127);
+	exec_cmd(argv[3], envp);
 	close(outfile_fd);
 	return (1);
 }
@@ -37,10 +36,7 @@ int	first_cmd(char **argv, char **envp, int *pipefd)
 	if (pid2 == -1)
 		ft_error();
 	if (pid2 == 0)
-	{
-		if (second_cmd(argv, envp, pipefd) == 127)
-			return (127);
-	}
+		second_cmd(argv, envp, pipefd);
 	else
 	{
 		infile_fd = open(argv[1], O_RDONLY);
@@ -49,8 +45,7 @@ int	first_cmd(char **argv, char **envp, int *pipefd)
 		dup2(pipefd[1], STDOUT_FILENO);
 		dup2(infile_fd, STDIN_FILENO);
 		close(pipefd[0]);
-		if (exec_cmd(argv[2], envp) == 127)
-			exit(127);
+		exec_cmd(argv[2], envp);
 	}
 	return (1);
 }
